@@ -1,0 +1,319 @@
+/*
+Theme Name: spaceX
+Theme URI: 
+Author: ben noah
+Author URI: 
+Description: student for Noroff work with påortofolio
+Version: 1.1
+*/
+
+/*--------------------------------------------------------------
+Table of Contents
+----------------------------------------------------------------
+# Reset CSS
+# Typography
+# Elements
+# Forms
+# Navigation
+	## Links
+	## Menus
+# Accessibility
+# Alignments
+# Clearings
+# Widgets
+# Layout
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Reset CSS
+Iam restarting the procject fjerner alt av innebygde doms i google.
+--------------------------------------------------------------*/
+
+* {
+    box-sizing: border-box;
+}
+
+/*--------------------------------------------------------------
+# body
+1. gir body en bakgrunnsfarge
+2. det er at vi gir parent elemte farge på som vil påvirke barna
+--------------------------------------------------------------*/
+
+body{
+    background-color: grey;
+    color: #222221;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+/*--------------------------------------------------------------
+# device nav osv 
+1. gir nav en bakgrunnsfarge
+2. gir høye i px.
+3.strekken jeg framhever i boksen til nav på bunnen
+4.her bruker jeg flex, årsaken til det er at jeg koloner
+--------------------------------------------------------------*/
+.device{
+    background-color: #fff;
+    height: 75px;
+    border-bottom: 1px solid #e6e3db;
+    display: flex;  
+}
+
+/*--------------------------------------------------------------
+1. posisjon er absolut og vil ikke endre seg
+
+--------------------------------------------------------------*/
+
+.main-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    background: #fff;
+    opacity: 2;
+    z-index: 3;
+    visibility: hidden;
+    transition: all 0.375s;
+  }
+
+
+.main-nav.is-open {
+    opacity: 1;
+    z-index: 100;
+    visibility: visible;
+  }
+
+
+  /* the color effext band effect */
+.main-nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -16px;
+    background: #fa6980;
+    transform-origin: 0 0;
+    transform: skew(-14deg) translateX(-120%);
+    transition: all 0.275s 0.1s;
+  }
+  
+  .main-nav.is-open::before {
+    transform: skew(-14deg) translateX(0);
+  }
+  
+  /* Skewing effect on menu links */
+  .main-nav ul {
+    display: inline-flex;
+    flex-direction: column;
+    height: 93%; /* Should be 100%, but we have a notice message :D */
+    align-items: flex-end;
+    justify-content: center;
+    transform: translateX(-18%) skew(-16deg);
+  }
+  
+  .main-nav li {
+    display: block;
+    margin: 0.5rem 0;
+    text-align: right;
+    transform: skew(16deg);
+  }
+  
+  /* Apparition effect on links */
+  .main-nav a {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .main-nav.is-open a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .main-nav li:nth-child(1) a {
+    transition: all 275ms 175ms;
+  }
+  .main-nav li:nth-child(2) a {
+    transition: all 275ms 225ms;
+  }
+  .main-nav li:nth-child(3) a {
+    transition: all 275ms 275ms;
+  }
+  .main-nav li:nth-child(4) a {
+    transition: all 275ms 325ms;
+  }
+  .main-nav li:nth-child(5) a {
+    transition: all 275ms 375ms;
+  }
+  
+  /* Decoration */
+  .main-nav ul,
+  .main-nav li {
+    list-style: none;
+    padding: 0;
+  }
+  .main-nav a {
+    display: block;
+    padding: 12px 0;
+    color: #222221;
+    font-size: 1.4em;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
+  .open-main-nav {
+    position: absolute;
+    top: 15px;
+    padding-top: 20px;
+    right: 15px;
+    z-index: 1000;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  
+  .open-main-nav:focus {
+    outline: none;
+  }
+  .burger {
+    position: relative;
+    display: block;
+    width: 28px;
+    height: 4px;
+    margin: 0 auto;
+    background: #5a3b5d;
+    transform: skew(5deg);
+    transition: all 0.275s;
+  }
+  .burger:after,
+  .burger:before {
+    content: "";
+    display: block;
+    height: 100%;
+    background:  #ED1B2D ;
+    transition: all 0.275s;
+  }
+  
+  .burger:after {
+    transform: translateY(-12px) translateX(-2px) skew(-20deg);
+    background:   #ED1B2D   ;
+  }
+  
+  .burger:before {
+    transform: translateY(-16px) skew(-10deg);
+       background: #ED1B2D;
+  }
+  
+  /* Toggle State part */
+  .is-open .burger {
+    transform: skew(5deg) translateY(-8px) rotate(-45deg);
+  }
+  
+  .is-open .burger:before {
+    transform: translateY(0px) skew(-10deg) rotate(75deg);
+  }
+  
+  .is-open .burger:after {
+    transform: translateY(-12px) translateX(10px) skew(-20deg);
+    opacity: 0;
+  }
+  
+  .burger-text {
+    display: block;
+    font-size: 0.675rem;
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    color: #f85051;
+  }
+
+  /*--------------------------------------------------------------
+# Logo
+--------------------------------------------------------------*/
+.logo {
+    font-family: "Chivo", sans-serif;
+    font-weight: 700;
+    color: #ED1B2D;
+    display: inline-flex;
+    font-size: 16px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+    padding: 16px;
+    display: inline-block;
+  }
+/*--------------------------------------------------------------
+# Hero Banner 
+
+been using this page for inspiration https://freefrontend.com/css-hero-effects/
+--------------------------------------------------------------*/
+
+.hero-image {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    /* Flexbox stuff */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* Text styles */
+    color: white; /* ADD THIS LINE */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../img/Backgroundredigert.jpg");
+    padding: 24px;
+  }
+  
+  .hero-imageHikes {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 50vh;
+    /* Flexbox stuff */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* Text styles */
+    color: white; /* ADD THIS LINE */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../img/guideone.jpg");
+    padding: 24px;
+  }
+  
+  .hero-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 16px;
+  
+    /* Margins */
+  }
+  .hero-text {
+    font-size: 16px;
+    text-align: left;
+  
+    /* Margins */
+  }
+  .butte{
+    margin-left: 128px;
+  }
+  .style {
+    background-color: #fa6980;
+    width: 151px;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
